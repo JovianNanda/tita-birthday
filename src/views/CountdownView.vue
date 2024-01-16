@@ -1,17 +1,11 @@
 <script setup>
+import SpecialWord from "@/components/SpecialWord.vue";
 import TimeCountdown from "@/components/TimeCountdown.vue";
 </script>
 
 <template>
-  <div class="countdown flex align-center justify-center h-svh">
+  <div class="container p-6 sm:p-10 h-svh flex flex-col justify-center">
+    <SpecialWord />
     <TimeCountdown />
   </div>
 </template>
-
-<style>
-.countdown {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>
