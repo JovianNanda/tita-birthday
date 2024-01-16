@@ -1,14 +1,21 @@
-<script></script>
+<script>
+export default {
+  props: {
+    birthday: Boolean,
+  },
+};
+</script>
 
 <template>
   <h1
-    class="sm:text-center transition-all mb-2 text-2xl font-light tracking-wide leading-normal relative flex flex-row items-center justify-center gap-3 gap-y-1 flex-wrap"
+    class="sm:text-center transition-all text-2xl font-light tracking-wide leading-normal relative flex flex-row items-center justify-center gap-3 gap-y-1 flex-wrap"
   >
     Something
     <span class="text-special transition-all text-4xl duration-300 font-medium"
       >Special</span
     >
-    About to Happen
+    <span v-if="!birthday"> About to Happen </span>
+    <span v-if="birthday"> Is Happening</span>
   </h1>
 </template>
 
@@ -23,6 +30,7 @@
   -webkit-text-fill-color: transparent;
   margin: 0;
   padding: 0;
+  cursor: default;
 }
 
 .text-special::before {
@@ -33,7 +41,7 @@
   background: -moz-repeating-linear-gradient(to right, #004ef5 0%, #72c4fc 100%);
   background: repeating-linear-gradient(to right, #004ef5 0%, #72c4fc 100%);
   width: 0;
-  height: 0.105vw;
+  height: 0.15rem;
   display: flex;
   position: absolute;
   bottom: -1%;

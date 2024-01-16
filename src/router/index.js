@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CountdownView from '../views/CountdownView.vue'
+import CountdownView from '@/views/CountdownView.vue'
+import BirthdayView from '@/views/BirthdayView.vue'
+import data from '@/assets/data.json'
+const birthdayDate = new Date(data.birthday)
+const currentDate = new Date()
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,12 +14,15 @@ const router = createRouter({
       component: CountdownView
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      path: '/birthday',
+      name: 'birthday',
+      component: BirthdayView,
+      beforeEnter: (to, from, next) => {
+        if (currentDate.toISOString() < birthdayDate.toISOString()) {
+          next('/')
+        }
+        return false
+      }
     }
   ]
 })
