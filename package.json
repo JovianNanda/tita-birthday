@@ -28,6 +28,7 @@
     "postcss": "^8.4.33",
     "prettier": "^3.0.3",
     "tailwindcss": "^3.4.1",
-    "vite": "^5.0.10"
+    "vite": "^5.0.10",
+    "vue-cli-plugin-netlify-lambda": "~0.1.1"
   }
 }
