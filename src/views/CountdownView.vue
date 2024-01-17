@@ -73,7 +73,13 @@ export default {
 </script>
 <template>
   <div class="container p-6 sm:p-10 h-svh flex flex-col justify-center items-center">
-    <SpecialWord :birthday="birthdayStatus" />
+    <SpecialWord
+      :birthday="birthdayStatus"
+      beforeText="Something"
+      specialText="Special"
+      afterTextDefault="About to Happen"
+      afterTextTrue="Is Happening"
+    />
 
     <TimeCountdown
       :PropsDays="days"

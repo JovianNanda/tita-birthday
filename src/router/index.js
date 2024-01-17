@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import CountdownView from '@/views/CountdownView.vue'
 import BirthdayView from '@/views/BirthdayView.vue'
+import NotFound from '@/views/NotFound.vue'
 import data from '@/assets/data.json'
 const birthdayDate = new Date(data.birthday)
 const currentDate = new Date()
@@ -17,11 +18,17 @@ const router = createRouter({
       path: '/birthday',
       name: 'birthday',
       component: BirthdayView,
-      beforeEnter: (to, from, next) => {
+      beforeEnter: (to, from) => {
         if (currentDate.toISOString() < birthdayDate.toISOString()) {
-          next('/')
+          return '/'
         }
-        return false
+      }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      beforeEnter: (to, from) => {
+        return '/'
       }
     }
   ]

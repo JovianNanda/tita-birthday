@@ -2,6 +2,10 @@
 export default {
   props: {
     birthday: Boolean,
+    beforeText: String,
+    specialText: String,
+    afterTextDefault: String,
+    afterTextTrue: String,
   },
 };
 </script>
@@ -10,12 +14,12 @@ export default {
   <h1
     class="sm:text-center transition-all text-2xl font-light tracking-wide leading-normal relative flex flex-row items-center justify-center gap-3 gap-y-1 flex-wrap"
   >
-    Something
-    <span class="text-special transition-all text-4xl duration-300 font-medium"
-      >Special</span
-    >
-    <span v-if="!birthday"> About to Happen </span>
-    <span v-if="birthday"> Is Happening</span>
+    {{ beforeText }}
+    <span class="text-special transition-all text-4xl duration-300 font-medium">{{
+      specialText
+    }}</span>
+    <span v-if="!birthday"> {{ afterTextDefault }} </span>
+    <span v-if="birthday"> {{ afterTextTrue }}</span>
   </h1>
 </template>
 
