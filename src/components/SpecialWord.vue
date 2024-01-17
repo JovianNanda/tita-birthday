@@ -20,12 +20,28 @@ export default {
 </template>
 
 <style>
+:root {
+  --c-main: #004ef5;
+  --c-secondary: #72c4fc;
+}
 .text-special {
   position: relative;
-  background: oklch(var(--p));
-  background: -webkit-repeating-linear-gradient(to right, #004ef5 0%, #72c4fc 100%);
-  background: -moz-repeating-linear-gradient(to right, #004ef5 0%, #72c4fc 100%);
-  background: repeating-linear-gradient(to right, #004ef5 0%, #72c4fc 100%);
+  background: var(--c-main);
+  background: -webkit-repeating-linear-gradient(
+    to right,
+    var(--c-main) 0%,
+    var(--c-secondary) 100%
+  );
+  background: -moz-repeating-linear-gradient(
+    to right,
+    var(--c-main) 0%,
+    var(--c-secondary) 100%
+  );
+  background: repeating-linear-gradient(
+    to right,
+    var(--c-main) 0%,
+    var(--c-secondary) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
@@ -36,10 +52,22 @@ export default {
 .text-special::before {
   content: "";
   color: transparent;
-  background: #004ef5;
-  background: -webkit-repeating-linear-gradient(to right, #004ef5 0%, #72c4fc 100%);
-  background: -moz-repeating-linear-gradient(to right, #004ef5 0%, #72c4fc 100%);
-  background: repeating-linear-gradient(to right, #004ef5 0%, #72c4fc 100%);
+  background: var(--c-main);
+  background: -webkit-repeating-linear-gradient(
+    to right,
+    var(--c-main) 0%,
+    var(--c-secondary) 100%
+  );
+  background: -moz-repeating-linear-gradient(
+    to right,
+    var(--c-main) 0%,
+    var(--c-secondary) 100%
+  );
+  background: repeating-linear-gradient(
+    to right,
+    var(--c-main) 0%,
+    var(--c-secondary) 100%
+  );
   width: 0;
   height: 0.15rem;
   display: flex;
