@@ -19,9 +19,12 @@ export default {
     const seconds = ref(0);
     const birthdayDate = new Date(data.birthday);
     const birthdayStatus = ref(false);
+    const tenSecondStatus = ref(false);
 
     onMounted(() => {
+      document.querySelector("#my_modal_3").showModal();
       themeChange(false);
+
       theme.value = localStorage.getItem("theme");
 
       if (theme.value == "night") {
@@ -46,6 +49,14 @@ export default {
         document.documentElement.style.setProperty("--c-secondary", "#72c4fc");
       }
     }
+    function playMusic() {
+      localStorage.setItem("music", "true");
+    }
+    function stopMusic() {
+      localStorage.setItem("music", "false");
+      document.querySelector("#audio").pause();
+      document.querySelector("#audio").currentTime = 0;
+    }
 
     setInterval(() => {
       const currentDate = new Date();
@@ -66,12 +77,57 @@ export default {
       if (currentDate.toISOString() >= birthdayDate.toISOString()) {
         birthdayStatus.value = true;
       }
+
+      if (
+        days.value == 0 &&
+        hours.value % 24 == 0 &&
+        minutes.value % 60 == 0 &&
+        seconds.value % 60 == 8 &&
+        seconds.value % 60 > 0
+      ) {
+        tenSecondStatus.value = true;
+      } else {
+        tenSecondStatus.value = false;
+      }
+
+      if (tenSecondStatus.value) {
+        if (JSON.parse(localStorage.getItem("music"))) {
+          document.querySelector("#audio").play();
+        }
+      }
     }, 1000);
-    return { setLittleTheme, days, hours, minutes, seconds, birthdayStatus };
+
+    return {
+      setLittleTheme,
+      days,
+      hours,
+      minutes,
+      seconds,
+      birthdayStatus,
+      tenSecondStatus,
+      playMusic,
+      stopMusic,
+    };
   },
 };
 </script>
 <template>
+  <dialog id="my_modal_3" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg text-primary">Selamat Datang!</h3>
+      <p class="py-6">
+        Ingin Menghidupkan <span class="text-primary">Musik/Suara</span> Pada Website Ini?
+      </p>
+      <form method="dialog" class="flex">
+        <button class="btn btn-md btn-error text-white ml-auto" @click="stopMusic()">
+          Taknok!
+        </button>
+        <button class="btn btn-md btn-primary ml-5" @click="playMusic()">
+          Iya Boleeeeh
+        </button>
+      </form>
+    </div>
+  </dialog>
   <div class="container p-6 sm:p-10 h-svh flex flex-col justify-center items-center">
     <SpecialWord
       :birthday="birthdayStatus"
@@ -95,6 +151,10 @@ export default {
         Pencet Aku 👀
       </button>
     </a>
+    <audio id="audio" hidden>
+      <source src="../assets/10sec.mp3" type="audio/mpeg" />
+      Your browser does not support the audio tag.
+    </audio>
     <label class="swap swap-rotate absolute top-4 right-6">
       <!-- this hidden checkbox controls the state -->
       <input
