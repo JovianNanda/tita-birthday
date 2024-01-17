@@ -116,7 +116,8 @@ export default {
     <div class="modal-box">
       <h3 class="font-bold text-lg text-primary">Selamat Datang!</h3>
       <p class="py-6">
-        Ingin Menghidupkan <span class="text-primary">Musik/Suara</span> Pada Website Ini?
+        Izinkan Menghidupkan <span class="text-primary">Musik/Suara</span> Pada Website
+        Ini?
       </p>
       <form method="dialog" class="flex">
         <button class="btn btn-md btn-error text-white ml-auto" @click="stopMusic()">
