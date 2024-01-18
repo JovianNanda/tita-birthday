@@ -7,7 +7,11 @@ export default {
     },
     fontFamily: {
       work: ['Work Sans', 'sans-serif'],
-      poppins: ['Poppins', 'sans-serif']
+      poppins: ['Poppins', 'sans-serif'],
+      catamaran: ['Catamaran', 'sans-serif'],
+      dosis: ['Dosis', 'sans-serif'],
+      signika: ['Signika', 'sans-serif'],
+      interTight: ['Inter Tight', 'sans-serif']
     }
   },
   plugins: [require('daisyui')],
