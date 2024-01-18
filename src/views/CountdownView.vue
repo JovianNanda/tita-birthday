@@ -54,7 +54,6 @@ export default {
     onMounted(() => {
       document.querySelector("#my_modal_3").showModal();
       themeChange(false);
-
       theme.value = localStorage.getItem("theme");
 
       if (theme.value == "night") {
@@ -82,7 +81,6 @@ export default {
     function playMusic() {
       localStorage.setItem("music", "true");
       modalStatus.value = true;
-      document.querySelector("#audio-confetti").play();
       bottomConfetti();
     }
     function stopMusic() {
@@ -131,6 +129,7 @@ export default {
     function bottomConfetti() {
       watch(birthdayStatus, (newBirthdayStatus) => {
         if (newBirthdayStatus) {
+          document.querySelector("#audio-confetti").play();
           setTimeout(() => {
             confetti(document.querySelector(".right-bottom"), confettiConfigRight);
             confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
@@ -139,6 +138,7 @@ export default {
       });
       // pas dia langsung mencet, dan semua waktu sudah 00
       if (birthdayStatus.value) {
+        document.querySelector("#audio-confetti").play();
         setTimeout(() => {
           confetti(document.querySelector(".right-bottom"), confettiConfigRight);
           confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
