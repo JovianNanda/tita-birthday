@@ -27,9 +27,9 @@ export default {
       angle: 70,
       spread: 30,
       startVelocity: 100,
-      elementCount: 300,
+      elementCount: 100,
       dragFriction: 0.12,
-      duration: 2000,
+      duration: 1500,
       stagger: 3,
       width: "10px",
       height: "10px",
@@ -39,9 +39,9 @@ export default {
       angle: 110,
       spread: 30,
       startVelocity: 100,
-      elementCount: 300,
+      elementCount: 100,
       dragFriction: 0.12,
-      duration: 2000,
+      duration: 1500,
       stagger: 3,
       width: "10px",
       height: "10px",
@@ -126,7 +126,7 @@ export default {
         }
       }
 
-      if (birthdayStatus.value) {
+      if (birthdayStatus.value && modalStatus.value) {
         confetti(document.querySelector(".right-bottom"), confettiConfigRight);
         confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
       }
