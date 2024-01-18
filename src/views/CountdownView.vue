@@ -175,7 +175,7 @@ export default {
   <dialog id="my_modal_3" class="modal">
     <div class="modal-box flex flex-col items-center" v-if="!loading">
       <h3 class="self-start text-lg text-primary font-bold mb-4">Tunggu Bentar!</h3>
-      <span class="loading loading-spinner pt-12 pb-16 w-20"></span>
+      <span class="loading loading-ball text-primary pt-12 pb-16 w-20"></span>
     </div>
     <div class="modal-box" v-if="loading">
       <h3 class="font-bold text-lg text-primary">Selamat Datang!</h3>
