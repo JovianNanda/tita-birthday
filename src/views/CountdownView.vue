@@ -25,24 +25,24 @@ export default {
     const tenSecondStatus = ref(false);
     const confettiConfigLeft = {
       angle: 75,
-      spread: 30,
-      startVelocity: 100,
-      elementCount: 400,
+      spread: 50,
+      startVelocity: 80,
+      elementCount: 300,
       dragFriction: 0.12,
       duration: 3000,
-      stagger: 3,
+      stagger: 2,
       width: "10px",
       height: "10px",
       perspective: "800px",
     };
     const confettiConfigRight = {
       angle: 105,
-      spread: 30,
-      startVelocity: 100,
-      elementCount: 400,
+      spread: 50,
+      startVelocity: 80,
+      elementCount: 300,
       dragFriction: 0.12,
       duration: 3000,
-      stagger: 3,
+      stagger: 2,
       width: "10px",
       height: "10px",
       perspective: "800px",
@@ -80,12 +80,14 @@ export default {
     function playMusic() {
       localStorage.setItem("music", "true");
       modalStatus.value = true;
+      bottomConfetti();
     }
     function stopMusic() {
       localStorage.setItem("music", "false");
       document.querySelector("#audio").pause();
       document.querySelector("#audio").currentTime = 0;
       modalStatus.value = true;
+      bottomConfetti();
     }
 
     setInterval(() => {
@@ -121,12 +123,22 @@ export default {
       }
     }, 1000);
 
-    watch(birthdayStatus, (newBirthdayStatus) => {
-      if (newBirthdayStatus) {
-        confetti(document.querySelector(".right-bottom"), confettiConfigRight);
-        confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
+    function bottomConfetti() {
+      watch(birthdayStatus, (newBirthdayStatus) => {
+        if (newBirthdayStatus) {
+          setTimeout(() => {
+            confetti(document.querySelector(".right-bottom"), confettiConfigRight);
+            confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
+          }, 1000);
+        }
+      });
+      if (birthdayStatus.value) {
+        setTimeout(() => {
+          confetti(document.querySelector(".right-bottom"), confettiConfigRight);
+          confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
+        }, 1000);
       }
-    });
+    }
 
     watch(tenSecondStatus, (newTenSecondStatus) => {
       if (newTenSecondStatus) {
@@ -147,6 +159,7 @@ export default {
       playMusic,
       stopMusic,
       modalStatus,
+      bottomConfetti,
     };
   },
 };
