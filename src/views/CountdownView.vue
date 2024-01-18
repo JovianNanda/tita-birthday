@@ -3,12 +3,15 @@ import SpecialWord from "@/components/SpecialWord.vue";
 import TimeCountdown from "@/components/TimeCountdown.vue";
 import { themeChange } from "theme-change";
 import { ref, onMounted } from "vue";
+import ConfettiExplosion from "vue-confetti-explosion";
+import { confetti } from "dom-confetti";
 import data from "@/assets/data.json";
 
 export default {
   components: {
     SpecialWord,
     TimeCountdown,
+    ConfettiExplosion,
   },
 
   setup() {
@@ -20,6 +23,31 @@ export default {
     const birthdayDate = new Date(data.birthday);
     const birthdayStatus = ref(false);
     const tenSecondStatus = ref(false);
+    const confettiConfigLeft = {
+      angle: 70,
+      spread: 30,
+      startVelocity: 100,
+      elementCount: 300,
+      dragFriction: 0.12,
+      duration: 2000,
+      stagger: 3,
+      width: "10px",
+      height: "10px",
+      perspective: "800px",
+    };
+    const confettiConfigRight = {
+      angle: 110,
+      spread: 30,
+      startVelocity: 100,
+      elementCount: 300,
+      dragFriction: 0.12,
+      duration: 2000,
+      stagger: 3,
+      width: "10px",
+      height: "10px",
+      perspective: "800px",
+    };
+    const modalStatus = ref(false);
 
     onMounted(() => {
       document.querySelector("#my_modal_3").showModal();
@@ -51,11 +79,13 @@ export default {
     }
     function playMusic() {
       localStorage.setItem("music", "true");
+      modalStatus.value = true;
     }
     function stopMusic() {
       localStorage.setItem("music", "false");
       document.querySelector("#audio").pause();
       document.querySelector("#audio").currentTime = 0;
+      modalStatus.value = true;
     }
 
     setInterval(() => {
@@ -95,6 +125,11 @@ export default {
           document.querySelector("#audio").play();
         }
       }
+
+      if (birthdayStatus.value) {
+        confetti(document.querySelector(".right-bottom"), confettiConfigRight);
+        confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
+      }
     }, 1000);
 
     return {
@@ -107,6 +142,7 @@ export default {
       tenSecondStatus,
       playMusic,
       stopMusic,
+      modalStatus,
     };
   },
 };
@@ -129,7 +165,10 @@ export default {
       </form>
     </div>
   </dialog>
-  <div class="container p-6 sm:p-10 h-svh flex flex-col justify-center items-center">
+  <div
+    class="container p-6 sm:p-10 h-svh flex flex-col justify-center items-center overflow-hidden relative"
+    id="container"
+  >
     <SpecialWord
       :birthday="birthdayStatus"
       beforeText="Something"
@@ -137,7 +176,7 @@ export default {
       afterTextDefault="About to Happen"
       afterTextTrue="Is Happening"
     />
-
+    <ConfettiExplosion v-if="birthdayStatus && modalStatus" />
     <TimeCountdown
       :PropsDays="days"
       :PropsHours="hours"
@@ -146,6 +185,7 @@ export default {
     />
     <a href="birthday">
       <button
+        id="btn-pencet"
         v-show="birthdayStatus"
         class="btn transition-all duration-200 text-xl flex w-fit text-primary mt-6"
       >
@@ -187,5 +227,7 @@ export default {
         />
       </svg>
     </label>
+    <div class="absolute left-bottom left-0 bottom-0"></div>
+    <div class="absolute right-bottom right-0 bottom-0"></div>
   </div>
 </template>
