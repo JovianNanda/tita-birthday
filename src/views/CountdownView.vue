@@ -23,26 +23,28 @@ export default {
     const birthdayDate = new Date(data.birthday);
     const birthdayStatus = ref(false);
     const tenSecondStatus = ref(false);
+    const loading = ref(false);
+
     const confettiConfigLeft = {
       angle: 75,
-      spread: 50,
+      spread: 45,
       startVelocity: 80,
       elementCount: 300,
       dragFriction: 0.12,
       duration: 3000,
-      stagger: 2,
+      stagger: 4,
       width: "10px",
       height: "10px",
       perspective: "800px",
     };
     const confettiConfigRight = {
       angle: 105,
-      spread: 50,
+      spread: 45,
       startVelocity: 80,
       elementCount: 300,
       dragFriction: 0.12,
       duration: 3000,
-      stagger: 2,
+      stagger: 4,
       width: "10px",
       height: "10px",
       perspective: "800px",
@@ -80,6 +82,7 @@ export default {
     function playMusic() {
       localStorage.setItem("music", "true");
       modalStatus.value = true;
+      document.querySelector("#audio-confetti").play();
       bottomConfetti();
     }
     function stopMusic() {
@@ -110,6 +113,8 @@ export default {
         birthdayStatus.value = true;
       }
 
+      loading.value = true;
+
       if (
         days.value == 0 &&
         hours.value % 24 == 0 &&
@@ -129,14 +134,15 @@ export default {
           setTimeout(() => {
             confetti(document.querySelector(".right-bottom"), confettiConfigRight);
             confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
-          }, 1000);
+          }, 1500);
         }
       });
+      // pas dia langsung mencet, dan semua waktu sudah 00
       if (birthdayStatus.value) {
         setTimeout(() => {
           confetti(document.querySelector(".right-bottom"), confettiConfigRight);
           confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
-        }, 1000);
+        }, 1500);
       }
     }
 
@@ -160,13 +166,18 @@ export default {
       stopMusic,
       modalStatus,
       bottomConfetti,
+      loading,
     };
   },
 };
 </script>
 <template>
   <dialog id="my_modal_3" class="modal">
-    <div class="modal-box">
+    <div class="modal-box flex flex-col items-center" v-if="!loading">
+      <h3 class="self-start text-lg text-primary font-bold mb-4">Tunggu Bentar!</h3>
+      <span class="loading loading-spinner pt-12 pb-16 w-20"></span>
+    </div>
+    <div class="modal-box" v-if="loading">
       <h3 class="font-bold text-lg text-primary">Selamat Datang!</h3>
       <p class="py-6">
         Izinkan Menghidupkan <span class="text-primary">Musik/Suara</span> Pada Website
@@ -183,7 +194,7 @@ export default {
     </div>
   </dialog>
   <div
-    class="container p-6 sm:p-10 h-svh flex flex-col justify-center items-center overflow-hidden relative"
+    class="p-6 sm:p-10 h-svh flex flex-col justify-center items-center overflow-hidden relative"
     id="container"
   >
     <SpecialWord
@@ -218,7 +229,11 @@ export default {
       <source src="../assets/10sec.mp3" type="audio/mpeg" />
       Your browser does not support the audio tag.
     </audio>
-    <label class="swap swap-rotate absolute top-4 right-6">
+    <audio id="audio-confetti" hidden v-if="birthdayStatus">
+      <source src="../assets/confetti.mp3" type="audio/mpeg" />
+      Your browser does not support the audio tag.
+    </audio>
+    <label class="swap swap-rotate absolute top-4 left-6">
       <!-- this hidden checkbox controls the state -->
       <input
         type="checkbox"
@@ -249,7 +264,7 @@ export default {
         />
       </svg>
     </label>
-    <div class="absolute left-bottom left-0 bottom-0"></div>
-    <div class="absolute right-bottom right-0 bottom-0"></div>
+    <div class="absolute left-bottom left-12 sm:left-20 bottom-0"></div>
+    <div class="absolute right-bottom right-12 sm:right-20 bottom-0"></div>
   </div>
 </template>
