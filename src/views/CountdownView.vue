@@ -2,7 +2,7 @@
 import SpecialWord from "@/components/SpecialWord.vue";
 import TimeCountdown from "@/components/TimeCountdown.vue";
 import { themeChange } from "theme-change";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import ConfettiExplosion from "vue-confetti-explosion";
 import { confetti } from "dom-confetti";
 import data from "@/assets/data.json";
@@ -24,24 +24,24 @@ export default {
     const birthdayStatus = ref(false);
     const tenSecondStatus = ref(false);
     const confettiConfigLeft = {
-      angle: 70,
+      angle: 75,
       spread: 30,
       startVelocity: 100,
-      elementCount: 100,
+      elementCount: 400,
       dragFriction: 0.12,
-      duration: 1500,
+      duration: 3000,
       stagger: 3,
       width: "10px",
       height: "10px",
       perspective: "800px",
     };
     const confettiConfigRight = {
-      angle: 110,
+      angle: 105,
       spread: 30,
       startVelocity: 100,
-      elementCount: 100,
+      elementCount: 400,
       dragFriction: 0.12,
-      duration: 1500,
+      duration: 3000,
       stagger: 3,
       width: "10px",
       height: "10px",
@@ -119,18 +119,22 @@ export default {
       } else {
         tenSecondStatus.value = false;
       }
+    }, 1000);
 
-      if (tenSecondStatus.value) {
+    watch(birthdayStatus, (newBirthdayStatus) => {
+      if (newBirthdayStatus) {
+        confetti(document.querySelector(".right-bottom"), confettiConfigRight);
+        confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
+      }
+    });
+
+    watch(tenSecondStatus, (newTenSecondStatus) => {
+      if (newTenSecondStatus) {
         if (JSON.parse(localStorage.getItem("music"))) {
           document.querySelector("#audio").play();
         }
       }
-
-      if (birthdayStatus.value && modalStatus.value) {
-        confetti(document.querySelector(".right-bottom"), confettiConfigRight);
-        confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
-      }
-    }, 1000);
+    });
 
     return {
       setLittleTheme,
@@ -176,7 +180,12 @@ export default {
       afterTextDefault="About to Happen"
       afterTextTrue="Is Happening"
     />
-    <ConfettiExplosion v-if="birthdayStatus && modalStatus" />
+    <ConfettiExplosion
+      v-if="birthdayStatus && modalStatus"
+      :force="0.8"
+      :duration="2000"
+      :particleCount="250"
+    />
     <TimeCountdown
       :PropsDays="days"
       :PropsHours="hours"
