@@ -129,7 +129,9 @@ export default {
     function bottomConfetti() {
       watch(birthdayStatus, (newBirthdayStatus) => {
         if (newBirthdayStatus) {
-          document.querySelector("#audio-confetti").play();
+          if (JSON.parse(localStorage.getItem("music"))) {
+            document.querySelector("#audio-confetti").play();
+          }
           setTimeout(() => {
             confetti(document.querySelector(".right-bottom"), confettiConfigRight);
             confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
@@ -138,7 +140,9 @@ export default {
       });
       // pas dia langsung mencet, dan semua waktu sudah 00
       if (birthdayStatus.value) {
-        document.querySelector("#audio-confetti").play();
+        if (JSON.parse(localStorage.getItem("music"))) {
+          document.querySelector("#audio-confetti").play();
+        }
         setTimeout(() => {
           confetti(document.querySelector(".right-bottom"), confettiConfigRight);
           confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
@@ -230,7 +234,7 @@ export default {
       Your browser does not support the audio tag.
     </audio>
     <audio id="audio-confetti" hidden v-if="birthdayStatus">
-      <source src="../assets/confetti.mp3" type="audio/mpeg" />
+      <source src="../assets/confetti_2.mp3" type="audio/mpeg" />
       Your browser does not support the audio tag.
     </audio>
     <label class="swap swap-rotate absolute top-4 left-6">
