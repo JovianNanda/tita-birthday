@@ -13,7 +13,7 @@
   </div> -->
   <div class="demo-wrapper mt-[5rem]">
     <section class="demo-text">
-      <div class="wrapper text">HAPPY BIRTHDAY TITA</div>
+      <div class="wrapper text">HAPPY BIRTHDAY TITA❤️</div>
     </section>
     <section class="demo-gallery">
       <ul class="wrapper">

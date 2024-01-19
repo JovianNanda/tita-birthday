@@ -47,7 +47,7 @@ export default {
 </script>
 
 <template>
-  <div class="container-cake mt-20 sm:mt-48">
+  <div class="container-cake mt-64 sm:mt-48">
     <div class="cake">
       <div class="tier tier-1">
         <div class="filling"></div>
@@ -99,7 +99,7 @@ export default {
     A Cake For You, <span class="text-red-500">Tita</span> ❤️
   </h1>
   <!-- <div class="text-wrapper"> -->
-  <div class="title-wrapper mt-10 sm:mt-16">
+  <div class="title-wrapper mt-44 sm:mt-16">
     <h1 id="hbd" class="sweet-title">
       <span id="hbd" data-text="19th">19th</span>
       <span id="hbd" data-text="Birthday">Birthday</span>
