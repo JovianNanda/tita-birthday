@@ -105,8 +105,8 @@ h2 {
 }
 
 img {
-  width: 1240px !important;
-  height: 874px !important;
+  width: 1024px !important;
+  height: 1048px !important;
   background: #f0f0f0;
 }
 
