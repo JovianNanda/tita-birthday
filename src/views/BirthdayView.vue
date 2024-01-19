@@ -8,7 +8,7 @@ import Lenis from "@studio-freight/lenis";
 import CakeView from "@/components/CakeView.vue";
 import { confetti } from "dom-confetti";
 import imageGallery from "@/components/imageGallery.vue";
-import imagesLoaded from "imagesLoaded";
+import imagesLoaded from "../../node_modules/imagesLoaded";
 export default {
   components: {
     ThemeToggle,
