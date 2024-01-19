@@ -12,143 +12,63 @@
     </div>
   </div> -->
   <div class="demo-wrapper mt-[5rem]">
+    <header></header>
     <section class="demo-text">
       <div class="wrapper text">HAPPY BIRTHDAY TITA❤️</div>
     </section>
     <section class="demo-gallery">
       <ul class="wrapper">
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=87"
-            width="1240"
-          />
+          <img height="874" src="../assets/photo/tita-1.jpeg" width="1240" />
         </li>
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=16"
-            width="1240"
-          />
+          <img height="874" src="../assets/photo/tita-2.jpg" width="1240" />
         </li>
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=191"
-            width="1240"
-          />
+          <img height="874" src="../assets/photo/tita-3.jpg" width="1240" />
         </li>
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=16"
-            width="1240"
-          />
+          <img height="874" src="../assets/photo/tita-4.jpeg" width="1240" />
         </li>
       </ul>
     </section>
     <section class="demo-gallery">
       <ul class="wrapper">
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=158"
-            width="1240"
-          />
+          <img height="874" src="../assets/photo/us-1.jpeg" width="1240" />
         </li>
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=104"
-            width="1240"
-          />
+          <img height="874" src="../assets/photo/us-5.jpeg" width="1240" />
         </li>
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=173"
-            width="1240"
-          />
+          <img height="874" src="../assets/photo/us-3.jpg" width="1240" />
         </li>
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=50"
-            width="1240"
-          />
+          <img height="874" src="../assets/photo/us-4.jpg" width="1240" />
         </li>
       </ul>
     </section>
+
     <section class="demo-gallery">
       <ul class="wrapper">
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=118"
-            width="1240"
-          />
+          <img height="800" src="../assets/photo/tita-5.jpg" width="1240" />
         </li>
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=182"
-            width="1240"
-          />
+          <img height="874" src="../assets/photo/tita-6.jpg" width="1240" />
         </li>
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=80"
-            width="1240"
-          />
+          <img height="874" src="../assets/photo/tita-7.jpg" width="1240" />
         </li>
         <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=96"
-            width="1240"
-          />
-        </li>
-      </ul>
-    </section>
-    <section class="demo-gallery">
-      <ul class="wrapper">
-        <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=107"
-            width="1240"
-          />
-        </li>
-        <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=118"
-            width="1240"
-          />
-        </li>
-        <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=82"
-            width="1240"
-          />
-        </li>
-        <li>
-          <img
-            height="874"
-            src="https://source.unsplash.com/random/1240x874?sig=130"
-            width="1240"
-          />
+          <img height="874" src="../assets/photo/tita-9.jpeg" width="1240" />
         </li>
       </ul>
     </section>
     <section class="demo-text">
-      <div class="wrapper text">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+      <div class="wrapper text">CANTIK <3</div>
     </section>
-    <footer class="df aic jcc">
-      <p>Images from <a href="https://unsplash.com/">Unsplash</a></p>
-    </footer>
+    <footer class="df aic jcc"></footer>
   </div>
 </template>
 <style>
@@ -185,8 +105,8 @@ h2 {
 }
 
 img {
-  width: 100%;
-  height: auto;
+  width: 1240px !important;
+  height: 874px !important;
   background: #f0f0f0;
 }
 
@@ -200,9 +120,11 @@ li {
   width: clamp(500px, 60vw, 800px);
   padding-right: 1rem;
 }
-
+header {
+  height: 75vh;
+}
 footer {
-  height: 25vh;
+  height: 75vh;
 }
 
 :-webkit-any-link {

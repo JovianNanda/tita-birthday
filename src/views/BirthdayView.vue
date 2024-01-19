@@ -21,6 +21,7 @@ export default {
   },
   setup() {
     const music = ref();
+    const modalError = ref();
     const confettiConfig = {
       angle: 100,
       spread: 80,
@@ -108,8 +109,10 @@ export default {
           .catch(function (error) {
             if (error.code == 0) {
               document.querySelector("#my_modal_3").showModal();
+              modalError.value = error.code;
             }
           });
+        document.querySelector("#my_modal_3").showModal();
       }
 
       new SplitType("#myText");
@@ -227,7 +230,7 @@ export default {
       });
     });
 
-    return { playMusic, stopMusic, ToggleBalloons, loading };
+    return { playMusic, stopMusic, ToggleBalloons, loading, music, modalError };
   },
 };
 </script>
@@ -242,8 +245,11 @@ export default {
         style="--value: 0"
         role="progressbar"
       ></div>
+      <form method="dialog" class="flex mt-7" v-if="modalError != 0 && loading == 100">
+        <button class="btn btn-md btn-success" @click="playMusic()">Lanjotttt</button>
+      </form>
     </div>
-    <div class="modal-box" v-if="loading == 100">
+    <div class="modal-box" v-if="loading == 100 && modalError == 0">
       <h3 class="font-bold text-lg text-primary">Selamat Datang!</h3>
       <p class="py-6">
         Izinkan Menghidupkan <span class="text-primary">Musik/Suara</span> Pada Website

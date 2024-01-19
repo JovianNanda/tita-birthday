@@ -47,7 +47,7 @@ export default {
 </script>
 
 <template>
-  <div class="container-cake mt-64 sm:mt-48">
+  <div class="container-cake mt-64 sm:mt-60">
     <div class="cake">
       <div class="tier tier-1">
         <div class="filling"></div>
