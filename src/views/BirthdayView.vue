@@ -332,7 +332,7 @@ export default {
     </div>
     <div class="kata-kata">
       <div class="hero min-h-screen">
-        <div class="hero-content text-center">
+        <div class="hero-content text-center relative">
           <div class="max-w-md">
             <h1 class="text-5xl font-bold">Halo Tita!</h1>
             <p class="py-6">
@@ -386,11 +386,13 @@ export default {
 <style>
 #position2 {
   position: absolute;
-  right: 15rem;
+  right: 12%;
+  bottom: 0;
 }
 #position {
   position: absolute;
-  left: 15rem;
+  left: 6%;
+  bottom: 0;
 }
 .sunflower {
   position: relative;
