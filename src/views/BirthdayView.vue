@@ -8,8 +8,13 @@ import Lenis from "@studio-freight/lenis";
 import CakeView from "@/components/CakeView.vue";
 import { confetti } from "dom-confetti";
 import imageGallery from "@/components/imageGallery.vue";
-import imagesLoaded from "../../node_modules/imagesLoaded";
+import imagesLoaded from "imagesLoaded";
 export default {
+  build: {
+    rollupOptions: {
+      external: ["imagesLoaded"],
+    },
+  },
   components: {
     ThemeToggle,
     CakeView,
