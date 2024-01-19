@@ -301,7 +301,7 @@ export default {
         </h1>
       </div>
       <svg
-        class="svg svg-cloud absolute -bottom-12 left-0 right-0 z-20 w-full text-base-200"
+        class="svg svg-cloud absolute -bottom-14 left-0 right-0 z-20 w-full text-base-200"
         viewBox="0 0 1732 112.5"
         width="1732"
         height="112.5"
@@ -386,7 +386,7 @@ export default {
 <style>
 #position2 {
   position: absolute;
-  right: 12%;
+  right: 20%;
   bottom: 0;
 }
 #position {
