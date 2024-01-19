@@ -1,7 +1,12 @@
 <script>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
+// import SplitType from "split-type";
+// import gsap from "gsap/gsap-core";
+
 export default {
   setup() {
+    onMounted(() => {});
+
     const cakeCandle = ref(false);
     function randomInteger(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -27,6 +32,7 @@ export default {
             },
           })
         );
+
         document.querySelector(".candle").classList.add("removed");
         document.querySelector(".flame").classList.add("removed");
       }
@@ -41,7 +47,7 @@ export default {
 </script>
 
 <template>
-  <div class="container-cake">
+  <div class="container-cake mt-20 sm:mt-48">
     <div class="cake">
       <div class="tier tier-1">
         <div class="filling"></div>
@@ -88,15 +94,30 @@ export default {
       </div>
     </div>
   </div>
+
   <h1 class="text-xl sm:text-3xl">
-    This Cake is For You <span class="text-red-500">Tita</span> ❤️
+    A Cake For You, <span class="text-red-500">Tita</span> ❤️
+  </h1>
+  <!-- <div class="text-wrapper"> -->
+  <div class="title-wrapper mt-10 sm:mt-16">
+    <h1 id="hbd" class="sweet-title">
+      <span id="hbd" data-text="19th">19th</span>
+      <span id="hbd" data-text="Birthday">Birthday</span>
+    </h1>
+  </div>
+  <!-- <h1
+    id="hbd"
+    class="text-[8rem] sm:text-[10rem] top-[12rem] gap-y-0 text-accent -z-10 flex absolute h-full"
+  >
+    19th Birthday
+  </h1> -->
+  <!-- </div> -->
+  <h1 class="text-sm mt-0">
+    <kbd class="kbd"><i class="fa-solid fa-computer-mouse-scrollwheel"></i></kbd> click
+    the candle
   </h1>
 </template>
 <style>
-root {
-  --bg: #f4f5fb;
-}
-
 html {
   box-sizing: border-box;
 }
@@ -104,6 +125,51 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+}
+
+.title-wrapper {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  transform: skew(0, -5deg);
+  position: absolute;
+  z-index: -10;
+  top: 10rem;
+}
+
+.sweet-title {
+  order: 2;
+  color: #fde9ff;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(3rem, 10vw, 6rem);
+  line-height: 0.75em;
+  text-align: center;
+  text-shadow: 3px 1px 1px #4af7ff, 2px 2px 1px #165bfb, 4px 2px 1px #4af7ff,
+    3px 3px 1px #165bfb, 5px 3px 1px #4af7ff, 4px 4px 1px #165bfb, 6px 4px 1px #4af7ff,
+    5px 5px 1px #165bfb, 7px 5px 1px #4af7ff, 6px 6px 1px #165bfb, 8px 6px 1px #4af7ff,
+    7px 7px 1px #165bfb, 9px 7px 1px #4af7ff;
+
+  span {
+    display: block;
+    position: relative;
+
+    &:before {
+      content: attr(data-text);
+      position: absolute;
+      text-shadow: 2px 2px 1px #e94aa1, -1px -1px 1px #c736f9, -2px 2px 1px #e94aa1,
+        1px -1px 1px #f736f9;
+      z-index: 1;
+    }
+
+    &:nth-child(1) {
+      padding-right: 2.25rem;
+    }
+
+    &:nth-child(2) {
+      padding-left: 2.25rem;
+    }
+  }
 }
 
 .container-cake {
@@ -150,7 +216,7 @@ html {
       border-radius: 0 0 20px 20px;
       width: 40px;
       height: 20px;
-      background-color: var(--bg);
+      background-color: #f4f5fb;
     }
   }
   &:after {
@@ -164,10 +230,10 @@ html {
 }
 .tier-1 {
   position: absolute;
-  background-color: #f2abe7;
+  background-color: #f2b1ab;
   bottom: 0;
   .filling {
-    background-color: darken(#f2abe7, 10%);
+    background-color: #eb7f7f;
   }
 }
 .tier-2 {
@@ -176,9 +242,9 @@ html {
   width: 60%;
   height: 45px;
   left: 20%;
-  background-color: #9fa3ec;
+  background-color: #b59fec;
   .filling {
-    background-color: darken(#9fa3ec, 10%);
+    background-color: #a874e4;
   }
 }
 .tier-3 {
@@ -187,9 +253,9 @@ html {
   width: 40%;
   height: 40px;
   left: 30%;
-  background-color: #86d2e1;
+  background-color: #86e197;
   .filling {
-    background-color: darken(#86d2e1, 10%);
+    background-color: #5dd767;
   }
 }
 .icing:nth-child(1) {
@@ -300,7 +366,7 @@ html {
 }
 @keyframes flame {
   50% {
-    transform: scale(0.8) rotate(45deg);
+    transform: scale(0.75) rotate(45deg);
   }
 }
 </style>

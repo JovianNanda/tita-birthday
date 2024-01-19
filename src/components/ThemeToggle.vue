@@ -32,7 +32,7 @@ export default {
 };
 </script>
 <template>
-  <label class="swap swap-rotate absolute top-4 left-6">
+  <label class="swap swap-rotate fixed top-4 left-6 z-40">
     <!-- this hidden checkbox controls the state -->
     <input
       type="checkbox"
