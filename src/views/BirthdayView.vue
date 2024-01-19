@@ -12,7 +12,7 @@ import imagesLoaded from "imagesLoaded";
 export default {
   build: {
     rollupOptions: {
-      external: ["imagesLoaded"],
+      external: ["../../node_modules/imagesLoaded"],
     },
   },
   components: {
