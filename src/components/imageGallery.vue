@@ -22,10 +22,10 @@
           <img height="874" src="../assets/photo/tita-1.jpeg" width="1240" />
         </li>
         <li>
-          <img height="874" src="../assets/photo/tita-2.jpg" width="1240" />
+          <img height="874" src="../assets/photo/tita-2.jpeg" width="1240" />
         </li>
         <li>
-          <img height="874" src="../assets/photo/tita-3.jpg" width="1240" />
+          <img height="874" src="../assets/photo/tita-3.jpeg" width="1240" />
         </li>
         <li>
           <img height="874" src="../assets/photo/tita-4.jpeg" width="1240" />
@@ -41,10 +41,10 @@
           <img height="874" src="../assets/photo/us-5.jpeg" width="1240" />
         </li>
         <li>
-          <img height="874" src="../assets/photo/us-3.jpg" width="1240" />
+          <img height="874" src="../assets/photo/us-3.jpeg" width="1240" />
         </li>
         <li>
-          <img height="874" src="../assets/photo/us-4.jpg" width="1240" />
+          <img height="874" src="../assets/photo/us-4.jpeg" width="1240" />
         </li>
       </ul>
     </section>
@@ -52,13 +52,13 @@
     <section class="demo-gallery">
       <ul class="wrapper">
         <li>
-          <img height="800" src="../assets/photo/tita-5.jpg" width="1240" />
+          <img height="800" src="../assets/photo/tita-5.jpeg" width="1240" />
         </li>
         <li>
-          <img height="874" src="../assets/photo/tita-6.jpg" width="1240" />
+          <img height="874" src="../assets/photo/tita-6.jpeg" width="1240" />
         </li>
         <li>
-          <img height="874" src="../assets/photo/tita-7.jpg" width="1240" />
+          <img height="874" src="../assets/photo/tita-7.jpeg" width="1240" />
         </li>
         <li>
           <img height="874" src="../assets/photo/tita-9.jpeg" width="1240" />
