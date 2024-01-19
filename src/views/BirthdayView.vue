@@ -345,7 +345,9 @@ export default {
               <span class="text-accent">Sayangg</span>, semoga di tahun ini diberi hal hal
               yang lebih baik dari tahun sebelumnya, diberi kesehatan, diberi rejeki, dan
               kebahagiaan selalu. semoga ulang tahun kedepannya aku juga masih bisa kaya
-              gini ya!, <span class="text-red-600">I Love You</span>
+              gini ya!, kamu sukses selalu, jangan nakal2, semangat ngelewatin semua
+              masalahnya, gaboleh nyerah!, karena akan selalu ada aku <3
+              <span class="text-red-600">I Love You</span>
             </p>
           </div>
 
