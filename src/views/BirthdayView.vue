@@ -1,7 +1,8 @@
 <script>
 import ThemeToggle from "@/components/ThemeToggle.vue";
-import { ScrollToPlugin, ScrollTrigger } from "gsap/all";
-import gsap from "gsap/gsap-core";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import gsap from "gsap";
 import SplitType from "split-type";
 import { onMounted, ref, watch, onBeforeMount } from "vue";
 import Lenis from "@studio-freight/lenis";
