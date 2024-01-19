@@ -600,7 +600,6 @@ export default {
   }
 }
 body {
-  background: #ffffff;
   text-align: center;
 }
 body {
