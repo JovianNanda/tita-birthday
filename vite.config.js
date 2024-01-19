@@ -14,8 +14,7 @@ export default defineConfig({
   plugins: [vue(), vueJsx()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@modules': fileURLToPath(new URL('./node_modules', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
   pwa: {
