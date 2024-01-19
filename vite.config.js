@@ -8,7 +8,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 export default defineConfig({
   build: {
     rollupOptions: {
-      external: ['node_modules/imagesLoaded']
+      external: ['node_modules/imagesLoaded', 'imagesLoaded', './node_modules/imageesLoaded']
     }
   },
   plugins: [vue(), vueJsx()],
