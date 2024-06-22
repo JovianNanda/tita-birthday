@@ -4,9 +4,9 @@ export default {
     PropsDays: Number,
     PropsHours: Number,
     PropsMinutes: Number,
-    PropsSeconds: Number,
-  },
-};
+    PropsSeconds: Number
+  }
+}
 </script>
 
 <template>
