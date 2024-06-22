@@ -203,7 +203,7 @@ export default {
       :birthday="birthdayStatus"
       beforeText="Something"
       specialText="Special"
-      afterTextDefault="About to Happen Later"
+      afterTextDefault="About to Happen in..."
       afterTextTrue="Is Happening"
     />
     <ConfettiExplosion
