@@ -1,30 +1,30 @@
 <script>
-import SpecialWord from "@/components/SpecialWord.vue";
-import TimeCountdown from "@/components/TimeCountdown.vue";
+import SpecialWord from '@/components/SpecialWord.vue'
+import TimeCountdown from '@/components/TimeCountdown.vue'
 // import { themeChange } from "theme-change";
-import ThemeToggle from "@/components/ThemeToggle.vue";
-import { ref, onMounted, watch } from "vue";
-import ConfettiExplosion from "vue-confetti-explosion";
-import { confetti } from "dom-confetti";
-import data from "@/assets/data.json";
+import ThemeToggle from '@/components/ThemeToggle.vue'
+import { ref, onMounted, watch } from 'vue'
+import ConfettiExplosion from 'vue-confetti-explosion'
+import { confetti } from 'dom-confetti'
+import data from '@/assets/data.json'
 
 export default {
   components: {
     SpecialWord,
     TimeCountdown,
     ConfettiExplosion,
-    ThemeToggle,
+    ThemeToggle
   },
   setup() {
     // const theme = ref();
-    const days = ref(0);
-    const hours = ref(0);
-    const minutes = ref(0);
-    const seconds = ref(0);
-    const birthdayDate = new Date(data.birthday);
-    const birthdayStatus = ref(false);
-    const tenSecondStatus = ref(false);
-    const loading = ref(false);
+    const days = ref(0)
+    const hours = ref(0)
+    const minutes = ref(0)
+    const seconds = ref(0)
+    const birthdayDate = new Date(data.birthday)
+    const birthdayStatus = ref(false)
+    const tenSecondStatus = ref(false)
+    const loading = ref(false)
 
     const confettiConfigLeft = {
       angle: 75,
@@ -34,10 +34,10 @@ export default {
       dragFriction: 0.12,
       duration: 3000,
       stagger: 4,
-      width: "10px",
-      height: "10px",
-      perspective: "800px",
-    };
+      width: '10px',
+      height: '10px',
+      perspective: '800px'
+    }
     const confettiConfigRight = {
       angle: 105,
       spread: 45,
@@ -46,14 +46,14 @@ export default {
       dragFriction: 0.12,
       duration: 3000,
       stagger: 4,
-      width: "10px",
-      height: "10px",
-      perspective: "800px",
-    };
-    const modalStatus = ref(false);
+      width: '10px',
+      height: '10px',
+      perspective: '800px'
+    }
+    const modalStatus = ref(false)
 
     onMounted(() => {
-      document.querySelector("#my_modal_3").showModal();
+      document.querySelector('#my_modal_3').showModal()
       // themeChange(false);
       // theme.value = localStorage.getItem("theme");
 
@@ -64,7 +64,7 @@ export default {
       //   document.documentElement.style.setProperty("--c-main", "#004ef5");
       //   document.documentElement.style.setProperty("--c-secondary", "#72c4fc");
       // }
-    });
+    })
 
     // function setLittleTheme() {
     //   theme.value = localStorage.getItem("theme");
@@ -80,39 +80,39 @@ export default {
     //   }
     // }
     function playMusic() {
-      localStorage.setItem("music", "true");
-      modalStatus.value = true;
-      bottomConfetti();
+      localStorage.setItem('music', 'true')
+      modalStatus.value = true
+      bottomConfetti()
     }
     function stopMusic() {
-      localStorage.setItem("music", "false");
-      document.querySelector("#audio").pause();
-      document.querySelector("#audio").currentTime = 0;
-      modalStatus.value = true;
-      bottomConfetti();
+      localStorage.setItem('music', 'false')
+      document.querySelector('#audio').pause()
+      document.querySelector('#audio').currentTime = 0
+      modalStatus.value = true
+      bottomConfetti()
     }
 
     setInterval(() => {
-      const currentDate = new Date();
-      const birthTime = birthdayDate - currentDate;
+      const currentDate = new Date()
+      const birthTime = birthdayDate - currentDate
 
-      seconds.value = parseInt(birthTime / 1000);
-      minutes.value = parseInt(seconds.value / 60);
-      hours.value = parseInt(minutes.value / 60);
-      days.value = parseInt(hours.value / 24);
+      seconds.value = parseInt(birthTime / 1000)
+      minutes.value = parseInt(seconds.value / 60)
+      hours.value = parseInt(minutes.value / 60)
+      days.value = parseInt(hours.value / 24)
 
       if (currentDate >= birthdayDate) {
-        seconds.value = 0;
-        minutes.value = 0;
-        hours.value = 0;
-        days.value = 0;
+        seconds.value = 0
+        minutes.value = 0
+        hours.value = 0
+        days.value = 0
       }
 
       if (currentDate.toISOString() >= birthdayDate.toISOString()) {
-        birthdayStatus.value = true;
+        birthdayStatus.value = true
       }
 
-      loading.value = true;
+      loading.value = true
 
       if (
         days.value == 0 &&
@@ -121,43 +121,43 @@ export default {
         seconds.value % 60 == 8 &&
         seconds.value % 60 > 0
       ) {
-        tenSecondStatus.value = true;
+        tenSecondStatus.value = true
       } else {
-        tenSecondStatus.value = false;
+        tenSecondStatus.value = false
       }
-    }, 1000);
+    }, 1000)
 
     function bottomConfetti() {
       watch(birthdayStatus, (newBirthdayStatus) => {
         if (newBirthdayStatus) {
-          if (JSON.parse(localStorage.getItem("music"))) {
-            document.querySelector("#audio-confetti").play();
+          if (JSON.parse(localStorage.getItem('music'))) {
+            document.querySelector('#audio-confetti').play()
           }
           setTimeout(() => {
-            confetti(document.querySelector(".right-bottom"), confettiConfigRight);
-            confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
-          }, 1500);
+            confetti(document.querySelector('.right-bottom'), confettiConfigRight)
+            confetti(document.querySelector('.left-bottom'), confettiConfigLeft)
+          }, 1500)
         }
-      });
+      })
       // pas dia langsung mencet, dan semua waktu sudah 00
       if (birthdayStatus.value) {
-        if (JSON.parse(localStorage.getItem("music"))) {
-          document.querySelector("#audio-confetti").play();
+        if (JSON.parse(localStorage.getItem('music'))) {
+          document.querySelector('#audio-confetti').play()
         }
         setTimeout(() => {
-          confetti(document.querySelector(".right-bottom"), confettiConfigRight);
-          confetti(document.querySelector(".left-bottom"), confettiConfigLeft);
-        }, 1500);
+          confetti(document.querySelector('.right-bottom'), confettiConfigRight)
+          confetti(document.querySelector('.left-bottom'), confettiConfigLeft)
+        }, 1500)
       }
     }
 
     watch(tenSecondStatus, (newTenSecondStatus) => {
       if (newTenSecondStatus) {
-        if (JSON.parse(localStorage.getItem("music"))) {
-          document.querySelector("#audio").play();
+        if (JSON.parse(localStorage.getItem('music'))) {
+          document.querySelector('#audio').play()
         }
       }
-    });
+    })
 
     return {
       // setLittleTheme,
@@ -171,10 +171,10 @@ export default {
       stopMusic,
       modalStatus,
       bottomConfetti,
-      loading,
-    };
-  },
-};
+      loading
+    }
+  }
+}
 </script>
 <template>
   <dialog id="my_modal_3" class="modal">
@@ -185,16 +185,13 @@ export default {
     <div class="modal-box" v-if="loading">
       <h3 class="font-bold text-lg text-primary">Selamat Datang!</h3>
       <p class="py-6">
-        Izinkan Menghidupkan <span class="text-primary">Musik/Suara</span> Pada Website
-        Ini?
+        Izinkan Menghidupkan <span class="text-primary">Musik/Suara</span> Pada Website Ini?
       </p>
       <form method="dialog" class="flex">
         <button class="btn btn-md btn-error text-white ml-auto" @click="stopMusic()">
           Taknok!
         </button>
-        <button class="btn btn-md btn-primary ml-5" @click="playMusic()">
-          Iya Boleeeeh
-        </button>
+        <button class="btn btn-md btn-primary ml-5" @click="playMusic()">Iya Boleeeeh</button>
       </form>
     </div>
   </dialog>
@@ -206,7 +203,7 @@ export default {
       :birthday="birthdayStatus"
       beforeText="Something"
       specialText="Special"
-      afterTextDefault="About to Happen"
+      afterTextDefault="About to Happen Later"
       afterTextTrue="Is Happening"
     />
     <ConfettiExplosion
