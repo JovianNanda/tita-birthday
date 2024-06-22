@@ -1,28 +1,28 @@
 <script>
-import ThemeToggle from "@/components/ThemeToggle.vue";
-import ScrollToPlugin from "gsap/ScrollToPlugin";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import gsap from "gsap";
-import SplitType from "split-type";
-import { onMounted, ref, watch, onBeforeMount } from "vue";
-import Lenis from "@studio-freight/lenis";
-import CakeView from "@/components/CakeView.vue";
-import { confetti } from "dom-confetti";
-import imageGallery from "@/components/imageGallery.vue";
+import ThemeToggle from '@/components/ThemeToggle.vue'
+import ScrollToPlugin from 'gsap/ScrollToPlugin'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+import gsap from 'gsap'
+import SplitType from 'split-type'
+import { onMounted, ref, watch, onBeforeMount } from 'vue'
+import Lenis from '@studio-freight/lenis'
+import CakeView from '@/components/CakeView.vue'
+import { confetti } from 'dom-confetti'
+import imageGallery from '@/components/imageGallery.vue'
 export default {
   components: {
     ThemeToggle,
     CakeView,
-    imageGallery,
+    imageGallery
   },
   data() {
     return {
-      data: null,
-    };
+      data: null
+    }
   },
   setup() {
-    const music = ref();
-    const modalError = ref();
+    const music = ref()
+    const modalError = ref()
     const confettiConfig = {
       angle: 100,
       spread: 80,
@@ -31,50 +31,45 @@ export default {
       dragFriction: 0.12,
       duration: 10000,
       stagger: 4,
-      width: "10px",
-      height: "10px",
-      perspective: "800px",
-    };
-    const cakeBlown = ref(false);
-    const loading = ref(0);
-    const modalStatus = ref(true);
+      width: '10px',
+      height: '10px',
+      perspective: '800px'
+    }
+    const cakeBlown = ref(false)
+    const loading = ref(0)
+    const modalStatus = ref(true)
     onBeforeMount(() => {
-      document.documentElement.style.margin = "0";
-      document.documentElement.style.height = "100%";
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.margin = "0";
-      document.body.style.height = "100%";
-      document.body.style.overflow = "hidden";
-    });
+      document.documentElement.style.margin = '0'
+      document.documentElement.style.height = '100%'
+      document.documentElement.style.overflow = 'hidden'
+      document.body.style.margin = '0'
+      document.body.style.height = '100%'
+      document.body.style.overflow = 'hidden'
+    })
     onMounted(() => {
-      gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger)
 
-      const images = gsap.utils.toArray("img");
-      const loader = document.querySelector("#progressbar");
+      const images = gsap.utils.toArray('img')
+      const loader = document.querySelector('#progressbar')
       const updateProgress = (instance) => (
-        (loader.textContent = `${Math.round(
-          (instance.progressedCount * 100) / images.length
-        )}%`),
+        (loader.textContent = `${Math.round((instance.progressedCount * 100) / images.length)}%`),
         loader.style.setProperty(
-          "--value",
+          '--value',
           `${Math.round((instance.progressedCount * 100) / images.length)}`
         ),
-        (loading.value = `${Math.round(
-          (instance.progressedCount * 100) / images.length
-        )}`)
-      );
+        (loading.value = `${Math.round((instance.progressedCount * 100) / images.length)}`)
+      )
 
       const showDemo = () => {
-        document.body.style.overflow = "auto";
-        document.scrollingElement.scrollTo(0, 0);
+        document.scrollingElement.scrollTo(0, 0)
         // gsap.to(document.querySelector(".loader"), { autoAlpha: 0 });
 
-        gsap.utils.toArray("section").forEach((section, index) => {
-          const w = section.querySelector(".wrapper");
+        gsap.utils.toArray('section').forEach((section, index) => {
+          const w = section.querySelector('.wrapper')
           const [x, xEnd] =
             index % 2
-              ? ["100%", (w.scrollWidth - section.offsetWidth) * -1]
-              : [w.scrollWidth * -1, 0];
+              ? ['100%', (w.scrollWidth - section.offsetWidth) * -1]
+              : [w.scrollWidth * -1, 1]
           gsap.fromTo(
             w,
             { x },
@@ -82,178 +77,173 @@ export default {
               x: xEnd,
               scrollTrigger: {
                 trigger: section,
-                scrub: 0.5,
-              },
+                scrub: 0.5
+              }
             }
-          );
-        });
-      };
-      imagesLoaded(images).on("progress", updateProgress).on("always", showDemo);
+          )
+        })
+      }
+      imagesLoaded(images).on('progress', updateProgress).on('always', showDemo)
 
-      localStorage.setItem("confetti", false);
+      localStorage.setItem('confetti', false)
 
-      window.addEventListener("cakeBlown-localstorage-changed", (event) => {
-        cakeBlown.value = event.detail.storage;
-        if (cakeBlown.value && !JSON.parse(localStorage.getItem("confetti"))) {
-          confetti(document.querySelector(".container-cake"), confettiConfig);
-          localStorage.setItem("confetti", true);
+      window.addEventListener('cakeBlown-localstorage-changed', (event) => {
+        cakeBlown.value = event.detail.storage
+        if (cakeBlown.value && !JSON.parse(localStorage.getItem('confetti'))) {
+          confetti(document.querySelector('.container-cake'), confettiConfig)
+          localStorage.setItem('confetti', true)
         }
-      });
+      })
 
-      const balloonContainer = document.querySelector("#balloon-container");
-      music.value = localStorage.getItem("music");
+      const balloonContainer = document.querySelector('#balloon-container')
+      music.value = localStorage.getItem('music')
 
       if (music.value) {
         document
-          .querySelector("#audio")
+          .querySelector('#audio')
           .play()
           .catch(function (error) {
             if (error.code == 0) {
-              document.querySelector("#my_modal_3").showModal();
-              modalError.value = error.code;
+              document.querySelector('#my_modal_3').showModal()
+              modalError.value = error.code
             }
-          });
-        document.querySelector("#my_modal_3").showModal();
+          })
+        document.querySelector('#my_modal_3').showModal()
       }
 
-      new SplitType("#myText");
-      gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
+      new SplitType('#myText')
+      gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
 
-      gsap.to(".svg-cloud", {
+      gsap.to('.svg-cloud', {
         scrollTrigger: {
-          scrub: true,
+          scrub: true
         },
         y: (i, target) => -ScrollTrigger.maxScroll(window) * target.dataset.speed + 10,
-        ease: "none",
-      });
+        ease: 'none'
+      })
 
-      gsap.to(".name-container", {
+      gsap.to('.name-container', {
         scrollTrigger: {
-          scrub: true,
+          scrub: true
         },
         y: () => ScrollTrigger.maxScroll(window) * 0.35,
-        ease: "none",
-      });
+        ease: 'none'
+      })
 
-      const lenis = new Lenis();
+      const lenis = new Lenis()
 
-      lenis.on("scroll", ScrollTrigger.update);
+      lenis.on('scroll', ScrollTrigger.update)
 
       gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
+        lenis.raf(time * 1000)
+      })
 
-      gsap.ticker.lagSmoothing(0);
+      gsap.ticker.lagSmoothing(0)
 
       function random(num) {
-        return Math.floor(Math.random() * num);
+        return Math.floor(Math.random() * num)
       }
 
       function getRandomStyles() {
-        var r = random(255);
-        var g = random(255);
-        var b = random(255);
-        var mt = random(200);
-        var ml = random(50);
-        var dur = random(5) + 5;
+        var r = random(255)
+        var g = random(255)
+        var b = random(255)
+        var mt = random(200)
+        var ml = random(50)
+        var dur = random(5) + 5
         return `
   background-color: rgba(${r},${g},${b},0.7);
   color: rgba(${r},${g},${b},0.7);
   box-shadow: inset -7px -3px 10px rgba(${r - 10},${g - 10},${b - 10},0.7);
   margin: ${mt}px 0 0 ${ml}px;
   animation: float ${dur}s ease-in infinite
-  `;
+  `
       }
 
       function createBalloons(num) {
         for (var i = num; i > 0; i--) {
-          let balloon = document.createElement("div");
-          balloon.className = "balloon";
-          balloon.style.cssText = getRandomStyles();
-          balloonContainer.append(balloon);
+          let balloon = document.createElement('div')
+          balloon.className = 'balloon'
+          balloon.style.cssText = getRandomStyles()
+          balloonContainer.append(balloon)
         }
       }
 
-      window.addEventListener("load", () => {
-        createBalloons(15);
-      });
+      window.addEventListener('load', () => {
+        createBalloons(15)
+      })
       // window.addEventListener("click", () => {
       //   removeBalloons();
       // });
-    });
+    })
     function ToggleBalloons() {
       setTimeout(() => {
-        let ballloons = document.querySelectorAll(".balloon");
-        let balloons_array = [...ballloons];
+        let ballloons = document.querySelectorAll('.balloon')
+        let balloons_array = [...ballloons]
         balloons_array.forEach((balloon) => {
-          if (balloon.style.display == "block") {
-            balloon.style.display = "none";
+          if (balloon.style.display == 'block') {
+            balloon.style.display = 'none'
           } else {
-            balloon.style.display = "block";
+            balloon.style.display = 'block'
           }
-        });
-      }, 500);
+        })
+      }, 500)
     }
 
     function playMusic() {
-      localStorage.setItem("music", "true");
-      document.querySelector("#audio").play();
-      modalStatus.value = false;
+      localStorage.setItem('music', 'true')
+      document.querySelector('#audio').play()
+      modalStatus.value = false
     }
     function stopMusic() {
-      localStorage.setItem("music", "false");
-      document.querySelector("#audio").pause();
-      document.querySelector("#audio").currentTime = 0;
-      modalStatus.value = false;
+      localStorage.setItem('music', 'false')
+      document.querySelector('#audio').pause()
+      document.querySelector('#audio').currentTime = 0
+      modalStatus.value = false
     }
     function lanjut() {
-      let music = JSON.parse(localStorage.getItem("music"));
+      let music = JSON.parse(localStorage.getItem('music'))
       if (music) {
-        playMusic();
+        playMusic()
       } else {
-        stopMusic();
+        stopMusic()
       }
     }
 
     watch(loading, (newLoading) => {
-      loading.value = newLoading;
+      loading.value = newLoading
       watch(modalStatus, (newModalStatus) => {
         if (!newModalStatus) {
           setTimeout(() => {
-            gsap.to(".char", {
+            gsap.to('.char', {
               y: 0,
               stagger: 0.05,
               delay: 0.2,
-              duration: 0.1,
-            });
-          }, 500);
+              duration: 0.1
+            })
+          }, 500)
           setTimeout(() => {
-            document.documentElement.style.margin = "0";
-            document.documentElement.style.height = "auto";
-            document.documentElement.style.overflow = "auto";
-            document.body.style.margin = "0";
-            document.body.style.height = "auto";
-            document.body.style.overflow = "auto";
-          }, 500);
+            document.documentElement.style.margin = '0'
+            document.documentElement.style.height = 'auto'
+            document.documentElement.style.overflow = 'auto'
+            document.body.style.margin = '0'
+            document.body.style.height = 'auto'
+            document.body.style.overflow = 'auto'
+          }, 500)
         }
-      });
-    });
+      })
+    })
 
-    return { playMusic, stopMusic, ToggleBalloons, loading, music, modalError, lanjut };
-  },
-};
+    return { playMusic, stopMusic, ToggleBalloons, loading, music, modalError, lanjut }
+  }
+}
 </script>
 
 <template>
   <dialog id="my_modal_3" class="modal">
     <div class="modal-box flex flex-col items-center">
       <h3 class="self-start text-lg text-primary font-bold mb-4">Tunggu Bentar!</h3>
-      <div
-        id="progressbar"
-        class="radial-progress"
-        style="--value: 0"
-        role="progressbar"
-      ></div>
+      <div id="progressbar" class="radial-progress" style="--value: 0" role="progressbar"></div>
       <form method="dialog" class="flex mt-7" v-if="modalError != 0 && loading == 100">
         <button class="btn btn-md btn-success" @click="lanjut()">Lanjotttt</button>
       </form>
@@ -261,16 +251,13 @@ export default {
     <div class="modal-box" v-if="loading == 100 && modalError == 0">
       <h3 class="font-bold text-lg text-primary">Selamat Datang!</h3>
       <p class="py-6">
-        Izinkan Menghidupkan <span class="text-primary">Musik/Suara</span> Pada Website
-        Ini?
+        Izinkan Menghidupkan <span class="text-primary">Musik/Suara</span> Pada Website Ini?
       </p>
       <form method="dialog" class="flex">
         <button class="btn btn-md btn-error text-white ml-auto" @click="stopMusic()">
           Taknok!
         </button>
-        <button class="btn btn-md btn-primary ml-5" @click="playMusic()">
-          Iya Boleeeeh
-        </button>
+        <button class="btn btn-md btn-primary ml-5" @click="playMusic()">Iya Boleeeeh</button>
       </form>
     </div>
   </dialog>
@@ -287,12 +274,8 @@ export default {
       Your browser does not support the audio tag.
     </audio>
     <div id="balloon-container">
-      <div
-        class="name-container container flex min-h-svh justify-center items-center flex-col"
-      >
-        <h1 class="char font-interTight text-4xl mb-4 font-extrabold">
-          Happy Birthday!🎉
-        </h1>
+      <div class="name-container container flex min-h-svh justify-center items-center flex-col">
+        <h1 class="char font-interTight text-4xl mb-4 font-extrabold">Happy Birthday!🎉</h1>
         <h1
           id="myText"
           class="char font-interTight text-[1.65rem] sm:text-4xl lg:text-7xl font-extrabold text-accent"
@@ -336,17 +319,16 @@ export default {
           <div class="max-w-md">
             <h1 class="text-5xl font-bold">Halo Tita!</h1>
             <p class="py-6">
-              Gimana websitenya bagus ga?, semoga kamu suka ya!, karena ngejar2 bikin
-              websitenya jdi aga kurang maksimal, nanti deh aku buatin yang lebihh
-              lagiii...
+              Gimana websitenya bagus ga?, semoga kamu suka ya!, karena ngejar2 bikin websitenya jdi
+              aga kurang maksimal, nanti deh aku buatin yang lebihh lagiii...
             </p>
             <p class="pt-4">
               Selamat Ulang Tahunn ya
-              <span class="text-accent">Sayangg</span>, semoga di tahun ini diberi hal hal
-              yang lebih baik dari tahun sebelumnya, diberi kesehatan, diberi rejeki, dan
-              kebahagiaan selalu. semoga ulang tahun kedepannya aku juga masih bisa kaya
-              gini ya!, kamu sukses selalu, jangan nakal2, semangat ngelewatin semua
-              masalahnya, gaboleh nyerah!, karena akan selalu ada aku <3
+              <span class="text-accent">Sayangg</span>, semoga di tahun ini diberi hal hal yang
+              lebih baik dari tahun sebelumnya, diberi kesehatan, diberi rejeki, dan kebahagiaan
+              selalu. semoga ulang tahun kedepannya aku juga masih bisa kaya gini ya!, kamu sukses
+              selalu, jangan nakal2, semangat ngelewatin semua masalahnya, gaboleh nyerah!, karena
+              akan selalu ada aku <3
               <span class="text-red-600">I Love You</span>
             </p>
           </div>
@@ -446,7 +428,11 @@ export default {
   width: 50px;
   position: absolute;
   animation: petals 2s infinite linear;
-  box-shadow: 15px 17px #ffe000, -15px 17px #ffe000, -22px -7px #ffe000, 0px -22px #ffe000,
+  box-shadow:
+    15px 17px #ffe000,
+    -15px 17px #ffe000,
+    -22px -7px #ffe000,
+    0px -22px #ffe000,
     22px -7px #ffe000;
 }
 .trunk {
@@ -510,7 +496,7 @@ export default {
 }
 .vase:before,
 .vase:after {
-  content: "";
+  content: '';
   position: absolute;
   background: #faa118;
 }
@@ -633,7 +619,7 @@ body {
 }
 
 .balloon:before {
-  content: "";
+  content: '';
   height: 75px;
   width: 1px;
   padding: 1px;
@@ -647,7 +633,7 @@ body {
 }
 
 .balloon:after {
-  content: "▲";
+  content: '▲';
   text-align: center;
   display: block;
   position: absolute;
